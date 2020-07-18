@@ -169,6 +169,36 @@ let rainbowRegex= /colou?r/;
 rainbowRegex.test(american); // Returns true
 rainbowRegex.test(british); // Returns true
 
+/* Positive/negative lookaheads tell the regex to look for a particular pattern of charachters to make sure they are there but to not match them. (?=...) is a positive lookahead where the ... is the character you are making sure is there while !?=.... is the negative lookahead */
+
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password); // Returns tru
+
+/* Using () we can check for a group of charachters within a regex */
+
+let testStr = "Pumpkin";
+let testRegex = /P(engu|umpk)in/;
+testRegex.test(testStr);
+// Returns true
+
+/*You can search for repeat substrings using capture groups. Parentheses, ( and ), are used to find repeat substrings. You put the regex of the pattern that will repeat in between the parentheses.
+
+To specify where that repeat string will appear, you use a backslash (\) and then a number. This number starts at 1 and increases with each additional capture group you use. An example would be \1 to match the first group. */
+
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["regex regex", "regex"]
+
+/*You can search and replace text in a string using .replace() on a string. The inputs for .replace() is first the regex pattern you want to search for. The second parameter is the string to replace the match or a function to do something. */
+
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+wrongText.replace(silverRegex, "blue");
+// Returns "The sky is blue."
+
+
 
 
 
